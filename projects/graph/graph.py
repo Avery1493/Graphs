@@ -27,7 +27,7 @@ class Graph:
         # if Nodes exist
         if v1 in self.vertices and v2 in self.vertices:
             # connect them 
-            # ?? .add
+            # ?? .add set method
             self.vertices[v1].add(v2)
         else:
             raise IndexError("Vertex does not exits")
@@ -46,14 +46,53 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # create empty queque, enqueue starting vertex
+        q = Queue()
+        q.enqueue(starting_vertex)
+        # create set to store the visited vertices 
+        visited = set()
+        # while queue is not empty
+        while q.size() > 0:
+            # dequeue the first vertex
+            v = q.dequeue() 
+            # if vertex has not been visited
+            if v not in visited:
+                # mark as visited
+                visited.add(v)
+                # print for debugging
+                #print(v)
+                # add neighbors to back of queue
+                for next_vertex in self.get_neighbors(v):
+                    q.enqueue(next_vertex)
+        return visited
+        
+        
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # create empty stack, push starting vertex
+        s = Stack()
+        s.push(starting_vertex)
+        # create set to store the visited vertices 
+        visited = set()
+        # while queue is not empty
+        while s.size() > 0:
+            # dequeue the first vertex
+            v = s.pop() 
+            print(v)
+            # if vertex has not been visited
+            if v not in visited:
+                # mark as visited
+                visited.add(v)
+                # print for debugging
+                #print(v)
+                # add neighbors to back of queue
+                for next_vertex in self.get_neighbors(v):
+                    s.push(next_vertex)
+        
 
     def dft_recursive(self, starting_vertex):
         """
@@ -119,7 +158,7 @@ if __name__ == '__main__':
 
     '''
     Valid BFT paths:
-        1, 2, 3, 4, 5, 6, 7
+        # 1, 2, 3, 4, 5, 6, 7
         1, 2, 3, 4, 5, 7, 6
         1, 2, 3, 4, 6, 7, 5
         1, 2, 3, 4, 6, 5, 7
@@ -138,7 +177,7 @@ if __name__ == '__main__':
     Valid DFT paths:
         1, 2, 3, 5, 4, 6, 7
         1, 2, 3, 5, 4, 7, 6
-        1, 2, 4, 7, 6, 3, 5
+        # 1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
     graph.dft(1)
