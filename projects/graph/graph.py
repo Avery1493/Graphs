@@ -82,7 +82,6 @@ class Graph:
         while s.size() > 0:
             # pop the first vertex
             v = s.pop() 
-            print(v)
             # if vertex has not been visited
             if v not in visited:
                 # mark as visited
@@ -94,14 +93,24 @@ class Graph:
                     s.push(next_vertex)
         
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass
+        if visited is None:
+            visited = set()
+        # add starting vertx
+        visited.add(starting_vertex)
+        # go through neighbors 
+        for v in self.get_neighbors(starting_vertex):
+            # check if vertex has been visited
+            if v not in visited:
+                # run recursive call
+                self.dft_recursive(v, visited)
+            
 
 
     def bfs(self, starting_vertex, destination_vertex):
@@ -118,7 +127,7 @@ class Graph:
         visited = set()
         # while queue not empty
         while q.size() > 0:
-            # dequeue the first path
+            # dequeue the first path (list)
             path = q.dequeue()
             # grab the last vertex from path
             # check if vertex has not been visited
@@ -132,7 +141,7 @@ class Graph:
                 # add path to neighbors to back of queue
                 for next_vertex in self.get_neighbors(path[-1]):
                     # make copy of path
-                    copy_path = path
+                    copy_path = list(path)
                     # append neighbor to path and enqueue path
                     copy_path.append(next_vertex)
                     q.enqueue(copy_path)
