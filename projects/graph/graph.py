@@ -27,17 +27,16 @@ class Graph:
         # if Nodes exist
         if v1 in self.vertices and v2 in self.vertices:
             # connect them 
-            # ?? .add set method
             self.vertices[v1].add(v2)
         else:
-            raise IndexError("Vertex does not exits")
+            raise IndexError("Sorry dude, vertex doesn't exits")
 
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        # Return the set at vertexid
+        # Return the set at vertex_id
         return self.vertices[vertex_id]
 
 
@@ -54,18 +53,16 @@ class Graph:
         # while queue is not empty
         while q.size() > 0:
             # dequeue the first vertex
-            v = q.dequeue() 
+            v = q.dequeue()
             # if vertex has not been visited
             if v not in visited:
                 # mark as visited
                 visited.add(v)
                 # print for debugging
-                #print(v)
+                # print(v)
                 # add neighbors to back of queue
                 for next_vertex in self.get_neighbors(v):
                     q.enqueue(next_vertex)
-        return visited
-        
         
 
     def dft(self, starting_vertex):
@@ -87,7 +84,7 @@ class Graph:
                 # mark as visited
                 visited.add(v)
                 # print for debugging
-                #print(v)
+                # print(v)
                 # add neighbors to top of stack
                 for next_vertex in self.get_neighbors(v):
                     s.push(next_vertex)
@@ -110,9 +107,9 @@ class Graph:
             if v not in visited:
                 # run recursive call
                 self.dft_recursive(v, visited)
+                #print(visited)
+        
             
-
-
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
@@ -183,6 +180,7 @@ class Graph:
                     s.push(copy_path)
         # return None
         return None 
+
 
     def dfs_recursive(self, starting_vertex, destination_vertex, visited=None, path=None):
         """
