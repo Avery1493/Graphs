@@ -57,9 +57,9 @@ class Graph:
             # if vertex has not been visited
             if v not in visited:
                 # mark as visited
+                print(v)
                 visited.add(v)
                 # print for debugging
-                # print(v)
                 # add neighbors to back of queue
                 for next_vertex in self.get_neighbors(v):
                     q.enqueue(next_vertex)
@@ -82,9 +82,9 @@ class Graph:
             # if vertex has not been visited
             if v not in visited:
                 # mark as visited
+                print(v)
                 visited.add(v)
                 # print for debugging
-                # print(v)
                 # add neighbors to top of stack
                 for next_vertex in self.get_neighbors(v):
                     s.push(next_vertex)
@@ -105,9 +105,10 @@ class Graph:
         for v in self.get_neighbors(starting_vertex):
             # check if vertex has been visited
             if v not in visited:
+                print(starting_vertex)
                 # run recursive call
                 self.dft_recursive(v, visited)
-                #print(visited)
+                
         
             
     def bfs(self, starting_vertex, destination_vertex):
